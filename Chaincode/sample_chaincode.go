@@ -56,6 +56,8 @@ func (t *SimpleAsset) Invoke(stub shim.ChaincodeStubInterface) peer.Response {
 		return t.set(stub, args)
 	} else if fn == "get" {
 		return t.get(stub, args)
+	} else if fn == set1 {
+		return t.set1(stub, args)
 	}
 
 	logger.Error("Function declaration not found for ", fn)
