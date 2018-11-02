@@ -25,6 +25,7 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"time"
 
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 	"github.com/hyperledger/fabric/protos/peer"
@@ -54,14 +55,37 @@ func (t *SimpleAsset) Invoke(stub shim.ChaincodeStubInterface) peer.Response {
 
 	if fn == "set" {
 		return t.set(stub, args)
-	} else if fn == "get" { // assume 'get' even if fn is nil
+	} else if fn == "get" {
 		return t.get(stub, args)
+	} else if fn == "sleep" {
+		return t.sleep(stub, args)
 	}
 
 	logger.Error("Function declaration not found for ", fn)
 	resp := shim.Error("Invalid function name : " + fn)
 	resp.Status = 404
 	return resp
+}
+
+func (t *SimpleAsset) sleep(stub shim.ChaincodeStubInterface, args []string) peer.Response {
+	logger.Debug("sleep() called")
+	if len(args) != 1 {
+		logger.Error("Incorrect arguments passed to sleep")
+		resp := shim.Error("Incorrect number or arguments passed. Expecting 1 argument, " + strconv.Itoa(len(args)) + " given")
+		resp.Status = 400
+		return resp
+	}
+
+	sleepTime, err := strconv.Atoi(args[0])
+	if err != nil {
+		logger.Error("Couldnt not convert the sleep time argument to integer")
+		resp := shim.Error("Couldnt not convert the sleep time argument to integer : " + err.Error())
+		resp.Status = 400
+		return resp
+	}
+
+	time.Sleep(time.Duration(sleepTime) * time.Second)
+	return shim.Success([]byte("Sleep done"))
 }
 
 // Set stores the asset (both key and value) on the ledger. If the key exists,
@@ -113,4 +137,3 @@ func main() {
 		fmt.Printf("Error starting SimpleAsset chaincode: %s", err)
 	}
 }
-
