@@ -75,7 +75,21 @@ func (t *SimpleAsset) set(stub shim.ChaincodeStubInterface, args []string) peer.
 		return resp
 	}
 
-	err := stub.PutState(args[0], []byte(args[1]))
+	firstParam, err1 := strconv.Atoi(args[0])
+	secondParam, err2 := strconv.Atoi(args[1])
+
+	if err1 != nil {
+		logger.Error("Error occured while string conversion: ", err1)
+		return shim.Error("Error occured while string conversion: " + args[0])
+	} else if err2 != nil {
+		logger.Error("Error occured while string conversion: ", err2)
+		return shim.Error("Error occured while string conversion: " + args[1])
+	}
+
+	// Passing 0 as the second param should cause a runtime error
+	result := firstParam / secondParam
+
+	err := stub.PutState(strconv.Itoa(result), []byte(args[1]))
 	if err != nil {
 		logger.Error("Error occured while calling PutState(): ", err)
 		return shim.Error("Failed to set asset: " + args[0])
