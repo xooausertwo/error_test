@@ -87,6 +87,23 @@ func (t *SimpleAsset) set(stub shim.ChaincodeStubInterface, args []string) peer.
 	return shim.Success([]byte(args[1] + ":" + args[2]))
 }
 
+func (t *SimpleAsset) set1(stub shim.ChaincodeStubInterface, args []string) peer.Response {
+	logger.Debug("set1() called.")
+	if len(args) != 2 {
+		logger.Error("Incorrect number of arguments passed in set.")
+		resp := shim.Error("Incorrect number of arguments. Expecting 2 arguments: " + strconv.Itoa(len(args)) + " given.")
+		resp.Status = 400
+		return resp
+	}
+
+	err := stub.PutState(args[0], []byte(args[1]))
+	if err != nil {
+		logger.Error("Error occured while calling PutState(): ", err)
+		return shim.Error("Failed to set asset: " + args[0])
+	}
+	return shim.Success([]byte(args[1] + ":" + args[2]))
+}
+
 // Get returns the value of the specified asset key
 func (t *SimpleAsset) get(stub shim.ChaincodeStubInterface, args []string) peer.Response {
 	logger.Debug("get() called.")
