@@ -41,7 +41,7 @@ type SimpleAsset struct {
 // or to migrate data.
 func (t *SimpleAsset) Init(stub shim.ChaincodeStubInterface) peer.Response {
 	logger.Debug("Init() called.")
-	return shim.Error("Returning error")
+	return shim.Success(nil)
 }
 
 // Invoke is called per transaction on the chaincode. Each transaction is
