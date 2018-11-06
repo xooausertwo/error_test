@@ -10,10 +10,9 @@
 #     language:            -> Language of smart contract source code. Options are node and go
 #     README:              -> Path to the documentation of the smart contract App [Optional Parameter]
 # 
-# Missing ":" in front of Xooa-get-set
 
 Apps:
-  Xooa-Get-Set
+  Xooa-Get-Set:
     Name: Get-Set
     Description: Xooa Get Set Smart Contract
     path: /get-set/SmartContract
