@@ -14,6 +14,6 @@
 Apps:
   Xooa-Get-Set:
     Description: Xooa Get Set Smart Contract
-    path: /get-set/SmartContract
+    path: /Chaincode
     language: go
     README: https://github.com/Xooa/samples/blob/master/get-set/README.md
