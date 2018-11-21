@@ -13,7 +13,7 @@
 # Missing ":" in front of Xooa-get-set
 
 Apps:
-  Xooa-Get-Set
+  Xooa-Get-Set:
     Name: Get-Set
     Description: Xooa Get Set Smart Contract
     path: /Smart Contract Xooa Get Set/Chaincode
