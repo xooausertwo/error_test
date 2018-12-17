@@ -13,7 +13,7 @@
 # Multiple chaincode files in specified chaincode folder
 
 Apps:
-  Xooa-Get-Set
+  Xooa-Get-Set:
     Name: Get-Set
     Description: Xooa Get Set Smart Contract
     path: /Chaincode
