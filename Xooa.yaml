@@ -10,12 +10,12 @@
 #     language:            -> Language of smart contract source code. Options are node and go
 #     README:              -> Path to the documentation of the smart contract App [Optional Parameter]
 # 
-# Missing ":" in front of Xooa-get-set
+# Missing source in chaincode folder
 
 Apps:
-  Xooa-Get-Set
+  Xooa-Get-Set:
     Name: Get-Set
     Description: Xooa Get Set Smart Contract
     path: /Chaincode
     language: go
-    README: https://github.com/Xooa/samples/blob/master/get-set/README.md
+    README: https://github.com/xooausertwo/error_test/blob/source_not_present/Xooa.yaml
