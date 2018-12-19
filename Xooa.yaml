@@ -18,4 +18,4 @@ Apps:
     Description: Xooa Get Set Smart Contract
     path: /Chaincode/sample_chaincode.go
     language: go
-    README: https://github.com/Xooa/samples/blob/master/get-set/README.md
+    README: https://github.com/xooausertwo/error_test/blob/path_contains_chaincode_file_name/README.md
